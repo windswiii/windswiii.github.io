@@ -1,17 +1,179 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
+  <title>Hello</title>
   <style>
+
     body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%; height: 100%;
+      /* background-color:rgb(243, 211, 255); */
+      background: linear-gradient(to right, #f7bb97, #dd5e89);
+      box-sizing:content-box;
+      position: absolute;
+      text-align: center;
+      margin: 0;
+    }
+
+    #deck {
+      width: 80%; height: 500px;
+      border-radius: 20px;
+      background-color: rgba(224, 130, 255, 0);
+      /* background: linear-gradient(to right, #f7bb97, #dd5e89); */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    #card-container {
+      width: auto; height: 400px;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
     }
+
+    .flip-card-container {
+      perspective: 1000px;
+    }
+
+    .flip-card {
+      display: inline-block;
+      width: 199px;
+      height: 340px;
+      position: relative;
+      border-radius: 5px;
+      transform-style: preserve-3d;
+      transition: transform 1.2s cubic-bezier(0.075, 0.8, 0.165, 1), box-shadow 1.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .flip-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0px 0px 30px #ff9bfa;
+    }
+
+    .flip-card .flip-card-back,
+    .flip-card .flip-card-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      backface-visibility: hidden;
+      box-shadow: 0px 0px 5px #747474;
+    }
+
+    .flip-card .flip-card-back {
+      background-image: url("images/Waite_cards/back.jpg");
+      background-size: cover;
+      color: #fff;
+      transform: rotateY(0deg);
+    }
+
+    .flip-card .flip-card-front {
+      color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    .flip-card.flipped {
+      transform: rotateY(-180deg);
+    }
+
+    p {
+      margin: 5px;
+    }
+
+    .fade-in,p {
+      opacity: 0; 
+      animation: fade 1s forwards;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
   </style>
+
 </head>
+
 <body>
-  <h1>Hello, Stranger.</h1>
+
+  <h1 class="fade-in">Hello, Stranger.</h1>
+  <p style="animation-delay: 1.0s;">Take a deep breath.</p>
+  <p style="animation-delay: 2.2s;">Calm your mind.</p>
+  <p style="animation-delay: 3.2s;">Think about your question.</p>
+  <p style="animation-delay: 4.7s;">Then draw a card.</p>
+  <div id="deck">
+    <div id="card-container">
+      <div class="flip-card-container fade-in" style="animation-delay: 6.5s;">
+        <div class="flip-card" :class="{ flipped: isflipped }" @click="flipCard(card)">
+          <div class="flip-card-back"></div>
+          <div v-if="thecard" class="flip-card-front" :style="{ backgroundImage: 'url(' + thecard.image + ')' }"></div>
+        </div>
+      </div>
+      
+    </div>
+    <div style="height: 100px;">
+      <h3 v-if="thecard" class="fade-in">{{thecard.Emeaning}}</h3>
+    </div>
+  </div>
+
+  <script src="js/vue.js"></script>
+  <script>
+
+    const app = Vue.createApp({
+      data() {
+        return {
+          cards: [],
+          isflipped: false,
+          thecard: null,
+          texts: ['Take a deep breath.', 'Calm your mind.', 'Think about your question.', 'Then draw a card.'],
+        };
+      },
+
+      created() {
+        this.fetchData();
+      },
+
+      mounted() {
+
+      },
+
+      methods: {
+
+        // get data from data.json
+        fetchData() {
+          fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+              this.cards = data.cards;
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        },
+
+        // flip card
+        flipCard(card) {
+          if (this.isflipped === true) {
+            return;
+          }
+          this.isflipped = true
+          // // 随机选择一张卡牌
+          this.thecard = this.cards[Math.floor(Math.random() * this.cards.length)];
+          this.isflipped = true
+        },
+      },
+    });
+
+    app.mount('#deck');
+
+  </script>
 </body>
+
 </html>

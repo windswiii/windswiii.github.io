@@ -1,0 +1,32 @@
+{
+  "cards": [
+    {
+      "Cname": "愚人",
+      "Ename": "The Fool",
+      "image": "images/Waite_cards/01.jpg",
+      "Cmeaning": "我是肉体的诗人，我是灵魂的诗人。",
+      "Emeaning": "I am the poet of the body, And I am the poet of the soul."
+    },
+    {
+      "Cname": "魔术师",
+      "Ename": "The Magician",
+      "image": "images/Waite_cards/02.jpg",
+      "Cmeaning": "魔法不过是相信自己。",
+      "Emeaning": "Magic is believing in yourself."
+    },
+    {
+      "Cname": "女祭司",
+      "Ename": "The High Priestess",
+      "image": "images/Waite_cards/03.jpg",
+      "Cmeaning": "她行于胜景之中，如无云的璀璨夜空。",
+      "Emeaning": "She walks in beauty, like the night Of cloudless climes and starry skies."
+    },
+    {
+      "Cname": "太阳",
+      "Ename": "The Sun",
+      "image": "images/Waite_cards/20.jpg",
+      "Cmeaning": "东方，普照万物的光。",
+      "Emeaning": "Lo, in the orient when the gracious light."
+    }
+  ]
+}
