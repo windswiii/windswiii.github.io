@@ -84,7 +84,7 @@ p {
 /* 适用于手机屏幕的样式 */
 @media screen and (max-width: 767px) {
   body {
-    font-size: 24px;
+    font-size: 22px;
     width: 100%;
     height: auto;
   }
@@ -110,7 +110,7 @@ p {
 /* 适用于平板和桌面屏幕的样式 */
 @media screen and (min-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
   
   #deck {
