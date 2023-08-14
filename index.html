@@ -132,7 +132,6 @@
           cards: [],
           isflipped: false,
           thecard: null,
-          texts: ['Take a deep breath.', 'Calm your mind.', 'Think about your question.', 'Then draw a card.'],
         };
       },
 
@@ -161,9 +160,7 @@
 
         // flip card
         flipCard(card) {
-          if (this.isflipped === false) {
-            this.isflipped = true;
-          }
+          if (this.isflipped === false) {this.isflipped = true;}
         },
       },
     });
